@@ -57,3 +57,12 @@ app.listen(app.get('port'), function () {
   // Toon een bericht in de console en geef het poortnummer door
   console.log(`Application started on http://localhost:${app.get('port')}`)
 })
+
+app.get('/stekjes', async function (request, response) {
+  // Gebruik de request parameter id en haal de informatie uit de database
+  const stekjesResponse = await fetch('https://fdnd-agency.directus.app/items/bib_stekjes/')
+  // En haal daarvan de JSON op
+  const stekjesResponseJSON = await stekjesResponse.json()
+// Geef hier eventueel data aan mee
+response.render('stekjes.liquid', {stekjes: stekjesResponseJSON.data})
+})

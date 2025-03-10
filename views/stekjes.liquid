@@ -1,0 +1,87 @@
+{% render 'partials/head.liquid' %}
+
+<header>
+        <img class="logo" src="assets/Logo.svg"  width="100" height="100">
+    <nav class="nav">
+        <a href="#stekjes">stekjes</a>
+        <a href="#zaden">zaden</a>
+        <a href="#geveltuin">geveltuin</a>
+        <a href="#agenda">agenda</a>
+        <a href="#partners">partners</a>
+        <a href="#contact">contact</a>
+      </nav>
+</header>   
+
+
+<section class="hero">
+    <div class="hero-content">
+      <h1>Stekjes</h1>
+      <p>Vind je favoriete plantje en geef je huis extra sfeer met onze unieke stekjes.</p>
+    </div>
+  </section>
+
+    <p>Heb jij een of meerdere plantenstekjes over en zou je die graag willen ruilen voor een nieuwe plantje? Bekijk hieronder ons aanbod.</p>
+
+
+    <div class="container">
+        <h2>Vind jouw favoriet in onze collectie geliefde stekjes</h2>
+    <div class="plant-grid">
+      <div class="plant-card">
+        <img src="assets/image1.svg" alt="Scindapsus">
+        <h3>Scindapsus</h3>
+        <button>Bekijk stekje</button>
+      </div>
+      <div class="plant-card">
+        <img src="plant2.jpg" alt="Scindapsus">
+        <h3>Scindapsus</h3>
+        <button>Bekijk stekje</button>
+      </div>
+      <div class="plant-card">
+        <img src="plant3.jpg" alt="Scindapsus">
+        <h3>Scindapsus</h3>
+        <button>Bekijk stekje</button>
+      </div>
+      <div class="plant-card">
+        <img src="plant4.jpg" alt="Scindapsus">
+        <h3>Scindapsus</h3>
+        <button>Bekijk stekje</button>
+      </div>
+      <div class="plant-card">
+        <img src="plant5.jpg" alt="Scindapsus">
+        <h3>Scindapsus</h3>
+        <button>Bekijk stekje</button>
+      </div>
+      <div class="plant-card">
+        <img src="plant6.jpg" alt="Scindapsus">
+        <h3>Scindapsus</h3>
+        <button>Bekijk stekje</button>
+      </div>
+    </div>
+  </div>
+
+
+  <h2>Hoe de kast is gemaakt</h2>
+
+  <p>Natuurlijk! Workshops zijn fantastische leermogelijkheden waarbij deelnemers praktische vaardigheden kunnen verwerven, nieuwe kennis kunnen opdoen en vaak ook nieuwe mensen kunnen ontmoeten. Het idee achter jouw website om een overzicht te bieden van beschikbare workshops is geweldig.</p>
+
+  <button>De kast</button>
+
+
+  <footer>
+  </footer>
+
+</main>
+
+
+
+
+{%render 'partials/foot.liquid'%}
+
+{% comment %} <h1>Hello World</h1>
+{% for stekje in stekjes %}
+    <section class="top">
+    <li>{{ stekje.naam }}</li>
+    </section>
+{%endfor%} {% endcomment %}
+
+
