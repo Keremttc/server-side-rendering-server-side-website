@@ -6,12 +6,14 @@ import express from 'express'
 import { Liquid } from 'liquidjs';
 
 
-console.log('Hieronder moet je waarschijnlijk nog wat veranderen')
+const apiUrl = "https://fdnd-agency.directus.app/items/bib_stekjes";
+ 
 // Doe een fetch naar de data die je nodig hebt
-// const apiResponse = await fetch('...')
+// const stekjesResponse = await fetch('https://fdnd-agency.directus.app/items/bib_stekjes')
+// const stekjesResponseJSON = await stekjesResponse.json()
 
-// Lees van de response van die fetch het JSON object in, waar we iets mee kunnen doen
-// const apiResponseJSON = await apiResponse.json()
+// const afbeeldingenResponse = await fetch('https://fdnd-agency.directus.app/items/bib_afbeeldingen?filter={%20%22type%22:%20{%20%22_eq%22:%20%22stekjes%22%20}}')
+// const afbeeldingenResponseJSON = await afbeeldingenResponse.json()
 
 // Controleer eventueel de data in je console
 // (Let op: dit is _niet_ de console van je browser, maar van NodeJS, in je terminal)
@@ -34,11 +36,35 @@ app.engine('liquid', engine.express());
 app.set('views', './views')
 
 // Maak een GET route voor de index (meestal doe je dit in de root, als /)
+
+
 app.get('/', async function (request, response) {
    // Render index.liquid uit de Views map
+   
+  // Hier doe ik een FETCH naar de API URL
+   const stekjesResponse = await fetch(apiUrl);
+   // Hier wordt de response omgezet naar JSON
+   const stekjesResponseJSON = await stekjesResponse.json();
+
+
+
+
    // Geef hier eventueel data aan mee
-   response.render('index.liquid')
-})
+   response.render('index.liquid', {
+    // stekjes: stekjesResponseJSON.data, 
+    stekjes: stekjesResponseJSON.data})
+    // afbeeldingen: afbeeldingenResponseJSON.data
+   })
+
+
+app.get('/stekjes/:id', async function (request, response) {
+  const stekjeId = request.params.id;
+  const stekjeResponse = await fetch(`https://fdnd-agency.directus.app/items/bib_stekjes/${stekjeId}`);
+  const stekjeData = await stekjeResponse.json();
+
+
+  response.render('stekjes.liquid', { stekje: stekjeData.data });
+});
 
 // Maak een POST route voor de index; hiermee kun je bijvoorbeeld formulieren afvangen
 // Hier doen we nu nog niets mee, maar je kunt er mee spelen als je wilt
@@ -48,21 +74,16 @@ app.post('/', async function (request, response) {
   response.redirect(303, '/')
 })
 
+app.use((req, res, next) => {
+  res.status(404).send("Error!")
+})
+
 // Stel het poortnummer in waar Express op moet gaan luisteren
 // Lokaal is dit poort 8000, als dit ergens gehost wordt, is het waarschijnlijk poort 80
-app.set('port', process.env.PORT || 8000)
+app.set('port', process.env.PORT || 8003)
 
 // Start Express op, haal daarbij het zojuist ingestelde poortnummer op
 app.listen(app.get('port'), function () {
   // Toon een bericht in de console en geef het poortnummer door
   console.log(`Application started on http://localhost:${app.get('port')}`)
-})
-
-app.get('/stekjes', async function (request, response) {
-  // Gebruik de request parameter id en haal de informatie uit de database
-  const stekjesResponse = await fetch('https://fdnd-agency.directus.app/items/bib_stekjes/')
-  // En haal daarvan de JSON op
-  const stekjesResponseJSON = await stekjesResponse.json()
-// Geef hier eventueel data aan mee
-response.render('stekjes.liquid', {stekjes: stekjesResponseJSON.data})
 })

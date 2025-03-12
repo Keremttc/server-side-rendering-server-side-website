@@ -1,2 +1,17 @@
 {% render 'partials/head.liquid' %}
-{%render 'partials/foot.liquid'%}
+{% comment %} {% include 'partial/nav.liquid' %} {% endcomment %}
+
+<header>
+    <h1>Stekjes</h1>
+</header>
+
+<main>
+    {% for stekje in stekjes %}
+        <article class="">
+            <a href="/stekjes/{{stekje.id}}">
+                <h3>{{stekje.naam}}</h3></a>
+            <img src="https://fdnd-agency.directus.app/assets/{{ stekje.foto }}" alt="{{stekje.naam}}">
+        </article>
+    {% endfor %}
+</main>
+

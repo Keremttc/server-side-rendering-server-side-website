@@ -1,33 +1,21 @@
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-    background-color: #c49b9b;
-}
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+    }
 
-.logo{
-    /* background-color: black; */
-}
+    header {
+        
+    }
+     
+ 
 
-.nav {
-    display: flex;
-    justify-content: flex-end; /* Zet alles naar rechts */
-    gap: 1rem; /* Optioneel: ruimte tussen de links */
-  }
-  
-  .nav a {
-    text-decoration: none;
-    color: #000; /* Kies je eigen kleur */
-  }
+    .text{
+        font-family:Arial, Helvetica, sans-serif;
+        background-color: #F9E9C2;
+        border: #F9E9C2 2px solid;
+        text-align: center;
+    }
 
-  .hero {
-    background: url('images/hero.jpg') no-repeat center/cover;
-    text-align: center;
-    color: white;
-    padding: 100px 20px;
-  }
-  
-  .hero-content h1 {
-    font-size: 3rem;
-  }
   
