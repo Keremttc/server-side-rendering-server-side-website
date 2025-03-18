@@ -57,14 +57,18 @@ app.get('/', async function (request, response) {
    })
 
 
+// Hier maak ik een route aan voor de detailpagina van een stekje, met de parameter :id
 app.get('/stekjes/:id', async function (request, response) {
+  // Hier haal ik het ID uit de URL
   const stekjeId = request.params.id;
-  const stekjeResponse = await fetch(`https://fdnd-agency.directus.app/items/bib_stekjes/${stekjeId}`);
+  // Hier doe ik een FETCH naar de API URL, met het ID van het stekje
+  const stekjeResponse = await fetch(`${apiUrl}/${stekjeId}`);
+  // Hier wordt de response omgezet naar JSON
   const stekjeData = await stekjeResponse.json();
-
-
-  response.render('stekjes.liquid', { stekje: stekjeData.data });
+ 
+    response.render('stekjes.liquid', {stekje: stekjeData.data})
 });
+
 
 // Maak een POST route voor de index; hiermee kun je bijvoorbeeld formulieren afvangen
 // Hier doen we nu nog niets mee, maar je kunt er mee spelen als je wilt
@@ -80,7 +84,7 @@ app.use((req, res, next) => {
 
 // Stel het poortnummer in waar Express op moet gaan luisteren
 // Lokaal is dit poort 8000, als dit ergens gehost wordt, is het waarschijnlijk poort 80
-app.set('port', process.env.PORT || 8003)
+app.set('port', process.env.PORT || 8006)
 
 // Start Express op, haal daarbij het zojuist ingestelde poortnummer op
 app.listen(app.get('port'), function () {

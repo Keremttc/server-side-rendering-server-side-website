@@ -2,15 +2,22 @@
 {% comment %} {% include 'partial/nav.liquid' %} {% endcomment %}
 
 <header>
-    <h1>Stekjes</h1>
+
 </header>
 
 <main>
+    <section>
+        <img class=foto src="/assets/background.svg" alt="" width="" height="">
+        <h1>Stekjes</h1>
+    </section>
+  
+    
+   
     {% for stekje in stekjes %}
         <article class="">
             <a href="/stekjes/{{stekje.id}}">
                 <h3>{{stekje.naam}}</h3></a>
-            <img src="https://fdnd-agency.directus.app/assets/{{ stekje.foto }}" alt="{{stekje.naam}}">
+            <img src="https://fdnd-agency.directus.app/assets/{{ stekje.foto }}" alt="{{stekje.naam}}" width="200px" height="250px">
         </article>
     {% endfor %}
 </main>
